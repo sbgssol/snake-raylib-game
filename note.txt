@@ -1,0 +1,9 @@
+1. Configuration:
+  - A folder named 'raylib-4.5-x64' is added as default to the project.
+  - Configuration applies for all mode (Debug,Release) and all platform (x86, x64, Win32).
+  - Add an additional include directory to: $(ProjectDir)raylib-4.5-x64\include.
+  - Add an additional library directory to: $(ProjectDir)raylib-4.5-x64\lib.
+
+2. Notes:
+  - To run, manually copy the raylib-4.5-x64\lib\raylib.dll to the .exe file
+  - To hide the console: https://github.com/raysan5/raylib/issues/324
