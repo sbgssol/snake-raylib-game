@@ -4,7 +4,7 @@
 // Some Defines
 //----------------------------------------------------------------------------------
 #define SNAKE_LENGTH   256
-#define SQUARE_SIZE     31
+#define SQUARE_SIZE     11
 
 //----------------------------------------------------------------------------------
 // Types and Structures Definition
@@ -27,7 +27,7 @@ typedef struct Food {
 // Global Variables Declaration
 //------------------------------------------------------------------------------------
 static const int screenWidth = 800;
-static const int screenHeight = 450;
+static const int screenHeight = 600;
 
 static int framesCounter = 0;
 static bool gameOver = false;
