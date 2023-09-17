@@ -1,21 +1,4 @@
-/*******************************************************************************************
-*
-*   raylib - classic game: snake
-*
-*   Sample game developed by Ian Eito, Albert Martos and Ramon Santamaria
-*
-*   This game has been created using raylib v1.3 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2015 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
 #include "raylib.h"
-
-#if defined(PLATFORM_WEB)
-#include <emscripten/emscripten.h>
-#endif
 
 //----------------------------------------------------------------------------------
 // Some Defines
@@ -66,47 +49,25 @@ static void DrawGame(void);         // Draw game (one frame)
 static void UnloadGame(void);       // Unload game
 static void UpdateDrawFrame(void);  // Update and Draw (one frame)
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
 int main(void)
 {
-  // Initialization (Note windowTitle is unused on Android)
-  //---------------------------------------------------------
   InitWindow(screenWidth, screenHeight, "classic game: snake");
 
   InitGame();
 
-#if defined(PLATFORM_WEB)
-  emscripten_set_main_loop(UpdateDrawFrame, 60, 1);
-#else
   SetTargetFPS(60);
-  //--------------------------------------------------------------------------------------
 
-  // Main game loop
-  while (!WindowShouldClose())    // Detect window close button or ESC key
+  while (!WindowShouldClose())
   {
-    // Update and Draw
-    //----------------------------------------------------------------------------------
     UpdateDrawFrame();
-    //----------------------------------------------------------------------------------
   }
-#endif
-  // De-Initialization
-  //--------------------------------------------------------------------------------------
-  UnloadGame();         // Unload loaded data (textures, sounds, models...)
+  UnloadGame();
 
-  CloseWindow();        // Close window and OpenGL context
-  //--------------------------------------------------------------------------------------
+  CloseWindow();
 
   return 0;
 }
 
-//------------------------------------------------------------------------------------
-// Module Functions Definitions (local)
-//------------------------------------------------------------------------------------
-
-// Initialize game variables
 void InitGame(void)
 {
   framesCounter = 0;
@@ -251,12 +212,12 @@ void DrawGame(void)
     // Draw grid lines
     for (int i = 0; i < screenWidth / SQUARE_SIZE + 1; i++)
     {
-      DrawLineV(Vector2{ SQUARE_SIZE* i + offset.x / 2, offset.y / 2 }, Vector2 { SQUARE_SIZE* i + offset.x / 2, screenHeight - offset.y / 2 }, LIGHTGRAY);
+      DrawLineV(Vector2{ SQUARE_SIZE * i + offset.x / 2, offset.y / 2 }, Vector2{ SQUARE_SIZE * i + offset.x / 2, screenHeight - offset.y / 2 }, LIGHTGRAY);
     }
 
     for (int i = 0; i < screenHeight / SQUARE_SIZE + 1; i++)
     {
-      DrawLineV(Vector2{ offset.x / 2, SQUARE_SIZE* i + offset.y / 2 }, Vector2 { screenWidth - offset.x / 2, SQUARE_SIZE* i + offset.y / 2 }, LIGHTGRAY);
+      DrawLineV(Vector2{ offset.x / 2, SQUARE_SIZE * i + offset.y / 2 }, Vector2{ screenWidth - offset.x / 2, SQUARE_SIZE * i + offset.y / 2 }, LIGHTGRAY);
     }
 
     // Draw snake
