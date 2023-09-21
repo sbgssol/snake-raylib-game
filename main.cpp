@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include <string_view>
 
 //----------------------------------------------------------------------------------
 // Some Defines
@@ -39,7 +40,8 @@ static Vector2 snakePosition[SNAKE_LENGTH] = { 0 };
 static bool allowMove = false;
 static Vector2 offset = { 0 };
 static int counterTail = 0;
-
+Image icon;
+Texture2D texture;
 //------------------------------------------------------------------------------------
 // Module Functions Declaration (local)
 //------------------------------------------------------------------------------------
@@ -49,9 +51,23 @@ static void DrawGame(void);         // Draw game (one frame)
 static void UnloadGame(void);       // Unload game
 static void UpdateDrawFrame(void);  // Update and Draw (one frame)
 
+void drawMessage(std::string_view);
+
 int main(void)
 {
   InitWindow(screenWidth, screenHeight, "classic game: snake");
+
+  icon = LoadImage("resources/ami.png");
+
+  ImageResize(&icon, 100, 100);
+
+  texture = LoadTextureFromImage(icon);
+
+  if (IsImageReady(icon)) {
+    SetWindowIcon(icon);
+  }
+
+  SetWindowState(FLAG_WINDOW_RESIZABLE);
 
   InitGame();
 
@@ -106,6 +122,14 @@ void UpdateGame(void)
   if (!gameOver)
   {
     if (IsKeyPressed('P')) pause = !pause;
+
+    if (IsKeyPressed('M')) {
+      MaximizeWindow();
+    }
+
+    if (IsKeyPressed('R')) {
+      RestoreWindow();
+    }
 
     if (!pause)
     {
@@ -221,16 +245,28 @@ void DrawGame(void)
     }
 
     // Draw snake
-    for (int i = 0; i < counterTail; i++) DrawRectangleV(snake[i].position, snake[i].size, snake[i].color);
+    for (int i = 0; i < counterTail; i++) {
+      if (i == 0) {
+        DrawTextureV(texture, snake[i].position, WHITE);
+        continue;
+      }
+      DrawRectangleV(snake[i].position, snake[i].size, snake[i].color);
+    }
 
     // Draw fruit to pick
     DrawRectangleV(fruit.position, fruit.size, fruit.color);
 
     if (pause) DrawText("GAME PAUSED", screenWidth / 2 - MeasureText("GAME PAUSED", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
+  
+    //DrawTexture(texture, 10, 10, WHITE);
   }
   else DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth() / 2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20) / 2, GetScreenHeight() / 2 - 50, 20, GRAY);
 
   EndDrawing();
+}
+
+void drawMessage(std::string_view msg) {
+  DrawText(msg.data(), screenWidth / 2 - MeasureText("GAME PAUSED", 40) / 2, screenHeight / 2 - 40, 40, GRAY);
 }
 
 // Unload game variables
