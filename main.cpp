@@ -1,5 +1,6 @@
-#include "raylib.h"
+﻿#include "raylib.h"
 #include <string_view>
+#include <iostream>
 
 //----------------------------------------------------------------------------------
 // Some Defines
@@ -42,6 +43,8 @@ static Vector2 offset = { 0 };
 static int counterTail = 0;
 Image icon;
 Texture2D texture;
+Font font;
+
 //------------------------------------------------------------------------------------
 // Module Functions Declaration (local)
 //------------------------------------------------------------------------------------
@@ -62,6 +65,12 @@ int main(void)
   ImageResize(&icon, 100, 100);
 
   texture = LoadTextureFromImage(icon);
+
+  font = LoadFont("resources/signika.ttf");
+
+  if (IsFontReady(font)) {
+    std::cout << "Font size: " << font.baseSize << '\n';
+  }
 
   if (IsImageReady(icon)) {
     SetWindowIcon(icon);
@@ -260,7 +269,15 @@ void DrawGame(void)
   
     //DrawTexture(texture, 10, 10, WHITE);
   }
-  else DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth() / 2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20) / 2, GetScreenHeight() / 2 - 50, 20, GRAY);
+  else {
+    /*DrawTextEx(font, "a ă â o ơ ô e ê u ư i", { 10, 10 }, font.baseSize, 0, BLACK);
+    DrawTextEx(font, "á ắ ấ ó ớ ố é ế ú ứ í", { 10, 50 }, font.baseSize, 0, BLACK);
+    DrawTextEx(font, "à ằ ầ ò ờ ồ è ề ù ừ ì", { 10, 90 }, font.baseSize, 0, BLACK);
+    DrawTextEx(font, "ả ẳ ẩ ỏ ở ổ ẻ ể ủ ử ỉ", { 10, 130 }, font.baseSize, 0, BLACK);
+    DrawTextEx(font, "ã ẵ ẫ õ ỡ ỗ ẽ ễ ũ ữ ĩ", { 10, 130 }, font.baseSize, 0, BLACK);
+    DrawTextEx(font, "ạ ặ ậ ọ ợ ộ ẹ ệ ụ ự ị", { 10, 170 }, font.baseSize, 0, BLACK);*/
+    DrawTextEx(font, "Press [Enter] to play again noob!", { 10, 170 }, font.baseSize, 0, RED);
+  } //DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth() / 2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20) / 2, GetScreenHeight() / 2 - 50, 20, GRAY);
 
   EndDrawing();
 }
