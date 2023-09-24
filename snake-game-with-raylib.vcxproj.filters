@@ -22,4 +22,9 @@
   <ItemGroup>
     <Text Include="note.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Colors.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

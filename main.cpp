@@ -1,6 +1,7 @@
 ﻿#include "raylib.h"
 #include <string_view>
 #include <iostream>
+#include "Colors.h"
 
 //----------------------------------------------------------------------------------
 // Some Defines
@@ -111,8 +112,8 @@ void InitGame(void)
     snake[i].size = Vector2{ SQUARE_SIZE, SQUARE_SIZE };
     snake[i].speed = Vector2{ SQUARE_SIZE, 0 };
 
-    if (i == 0) snake[i].color = DARKBLUE;
-    else snake[i].color = BLUE;
+    if (i == 0) snake[i].color = TEAL_600(255);
+    else snake[i].color = TEAL_300(255);
   }
 
   for (int i = 0; i < SNAKE_LENGTH; i++)
@@ -121,7 +122,7 @@ void InitGame(void)
   }
 
   fruit.size = Vector2{ SQUARE_SIZE, SQUARE_SIZE };
-  fruit.color = SKYBLUE;
+  fruit.color = LIME_400(255);
   fruit.active = false;
 }
 
@@ -255,10 +256,6 @@ void DrawGame(void)
 
     // Draw snake
     for (int i = 0; i < counterTail; i++) {
-      if (i == 0) {
-        DrawTextureV(texture, snake[i].position, WHITE);
-        continue;
-      }
       DrawRectangleV(snake[i].position, snake[i].size, snake[i].color);
     }
 
@@ -276,7 +273,7 @@ void DrawGame(void)
     DrawTextEx(font, "ả ẳ ẩ ỏ ở ổ ẻ ể ủ ử ỉ", { 10, 130 }, font.baseSize, 0, BLACK);
     DrawTextEx(font, "ã ẵ ẫ õ ỡ ỗ ẽ ễ ũ ữ ĩ", { 10, 130 }, font.baseSize, 0, BLACK);
     DrawTextEx(font, "ạ ặ ậ ọ ợ ộ ẹ ệ ụ ự ị", { 10, 170 }, font.baseSize, 0, BLACK);*/
-    DrawTextEx(font, "Press [Enter] to play again noob!", { 10, 170 }, font.baseSize, 0, RED);
+    DrawTextEx(font, "Press [Enter] to play again noob!", { 10, 170 }, font.baseSize, 0, EMERAL_900(255));
   } //DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth() / 2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20) / 2, GetScreenHeight() / 2 - 50, 20, GRAY);
 
   EndDrawing();
