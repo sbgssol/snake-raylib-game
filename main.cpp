@@ -7,7 +7,7 @@
 // Some Defines
 //----------------------------------------------------------------------------------
 #define SNAKE_LENGTH   256
-#define SQUARE_SIZE     11
+#define SQUARE_SIZE     21
 
 //----------------------------------------------------------------------------------
 // Types and Structures Definition
@@ -42,6 +42,11 @@ static Vector2 snakePosition[SNAKE_LENGTH] = { 0 };
 static bool allowMove = false;
 static Vector2 offset = { 0 };
 static int counterTail = 0;
+
+const auto SNAKE_HEAD_COLOR = PINK_600(255);
+const auto SNAKE_BODY_COLOR = PINK_200(255);
+const auto FOOD_COLOR       = GREEN_500(255);
+
 Image icon;
 Texture2D texture;
 Font font;
@@ -112,8 +117,8 @@ void InitGame(void)
     snake[i].size = Vector2{ SQUARE_SIZE, SQUARE_SIZE };
     snake[i].speed = Vector2{ SQUARE_SIZE, 0 };
 
-    if (i == 0) snake[i].color = TEAL_600(255);
-    else snake[i].color = TEAL_300(255);
+    if (i == 0) snake[i].color = SNAKE_HEAD_COLOR;
+    else snake[i].color = SNAKE_BODY_COLOR;
   }
 
   for (int i = 0; i < SNAKE_LENGTH; i++)
@@ -122,7 +127,7 @@ void InitGame(void)
   }
 
   fruit.size = Vector2{ SQUARE_SIZE, SQUARE_SIZE };
-  fruit.color = LIME_400(255);
+  fruit.color = FOOD_COLOR;
   fruit.active = false;
 }
 
