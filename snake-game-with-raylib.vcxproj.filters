@@ -15,16 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="note.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Colors.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="include\Colors.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Types.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
