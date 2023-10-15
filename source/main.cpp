@@ -5,8 +5,8 @@
 #include "Colors.h"
 #include "Snake.hpp"
 
-#define START_FUNCTION std::cout << "START -> " << __func__ << '\n'
-#define END_FUNCTION std::cout << __func__ << " -> END" << '\n'
+#define START_FUNCTION std::cout << "START -> " << __DATE__ << "-" << __TIME__ ":" << __FUNCSIG__ << '\n'
+#define END_FUNCTION   std::cout << "END   -> " <<__DATE__ << "-" << __TIME__ ":" << __FUNCSIG__ << '\n'
 
 //------------------------------------------------------------------------------------
 // Global Variables Declaration
